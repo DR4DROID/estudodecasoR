@@ -23,3 +23,20 @@ DT %>% filter(Species == "setosa" & Sepal.Length >= 4.7 & Petal.Length <=5.9) %>
 #d  Exiba a média e o desvio padrão do tamanho da sépala de cada espécie de lírio..
 
 DT %>% group_by(Species) %>% summarise(medsep = mean(Sepal.Length), sdsep = sd(Sepal.Length))
+
+#E  Adicione uma coluna em que a variável é a dimensão dos lírios. Essa
+#   variável é dada pela razão do tamanho da sepala e da pétala.
+
+X <- DT %>% mutate(DIMENSAO = Sepal.Length/Petal.Length)
+X
+
+# f Delete a coluna criada no exercicio anterior
+
+DT <- X %>% select(-DIMENSAO)
+DT
+
+#Selecione os lírios em que a variável inicie com “Petal” e não termine
+#com “Lenght”.
+
+
+DT %>% select(starts_with("Petal") & !ends_with("Length"))
